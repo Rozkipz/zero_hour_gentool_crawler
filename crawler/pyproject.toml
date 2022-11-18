@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "zh-api"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = []
+
+[tool.poetry.dependencies]
+python = "3.10.8"
+psycopg2 = {version = "2.9.5"}
+SQLAlchemy = {version = "1.4.44"}
+
+[tool.poetry.group.alembic.dependencies]
+alembic = "^1.8.0"
+
+#[tool.poetry.group.test.dependencies]
+
+#[build-system]
+#requires = ["poetry-core"]
+#build-backend = "poetry.core.masonry.api"

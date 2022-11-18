@@ -1,0 +1,5 @@
+# Ignore compiled Python files, where ever they are generated
+*.pyc
+
+# Ignore the dot env file containing postgres details.
+*.env

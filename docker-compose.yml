@@ -1,0 +1,53 @@
+services:
+  postgres_db_instance:
+    container_name: postgres_db_instance
+    environment:
+      - POSTGRES_DB=$POSTGRES_DB
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+    image: postgres
+    ports:
+      - "5432:5432"
+
+  alembic_upgrade:
+    container_name: alembic
+    environment:
+      - DB_CONN=$DB_CONN
+      - DEBUG=$DEBUG
+    build:
+      context: ./crawler
+      dockerfile: ./Dockerfile
+      target: alembic
+    volumes:
+      - ./crawler:/crawler
+    depends_on:
+      - postgres_db_instance
+
+  crawler:
+    container_name: crawler
+    environment:
+      - DB_CONN=$DB_CONN
+      - DEBUG=$DEBUG
+    build:
+      context: ./crawler
+      dockerfile: ./Dockerfile
+      target: crawler
+    volumes:
+      - ./crawler:/crawler
+    depends_on:
+      - alembic_upgrade
+
+  api:
+    container_name: api
+    environment:
+      - DB_CONN=$DB_CONN
+      - DEBUG=$DEBUG
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./api:/api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - alembic_upgrade
