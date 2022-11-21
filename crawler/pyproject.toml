@@ -8,8 +8,10 @@ packages = []
 
 [tool.poetry.dependencies]
 python = "3.10.8"
-psycopg2 = {version = "2.9.5"}
-SQLAlchemy = {version = "1.4.44"}
+psycopg2-binary = "2.9.5"
+#psycopg2 = "2.9.5"
+requests = "2.28.1"
+beautifulsoup4 = "4.11.1"
 
 [tool.poetry.group.alembic.dependencies]
 alembic = "^1.8.0"

@@ -4,10 +4,10 @@ ENV POETRY_VERSION=1.2.2
 ENV PATH="/usr/local/bin:$PATH"
 # Might not be needed^^^
 
-RUN python -m pip install pip==22.3.1
-RUN python -m pip install poetry==$POETRY_VERSION
+RUN python -m pip install pip==22.3.1 poetry==$POETRY_VERSION
 
 WORKDIR /crawler/
+RUN ls /crawler/
 COPY poetry.lock pyproject.toml /crawler/
 
 RUN poetry install
@@ -25,6 +25,7 @@ RUN poetry install --with alembic
 
 WORKDIR /crawler/crawler/
 
-CMD /bin/sh -c "poetry run alembic upgrade head"
+# Sleep here so we let the postgres server get up and running before trying to upgrade
+CMD /bin/sh -c "sleep 3 && poetry run alembic upgrade head"
 
 FROM crawler AS test

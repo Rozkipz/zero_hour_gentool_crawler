@@ -3,3 +3,6 @@
 
 # Ignore the dot env file containing postgres details.
 *.env
+
+# Ignore the postgres DB folder
+data/
