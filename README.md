@@ -25,3 +25,7 @@ The env vars that need to go in the .env file:
 * `just update_reqs` - Update the poetry lockfile if you change the requirements.
 * `just test` - Runs the test suite
 * `just _remove_postgres_db` - Delete the contents of the DB (including the table).
+
+## Big thanks to the Opensage project, and the excellent write-up by Tim Jones [here](https://opensage.github.io/blog/replay-file-parsing).
+## Also thanks to the cnc-replayreaders project found [here](https://github.com/louisdx/cnc-replayreaders)
+## Also thanks to Bill Rich who had found lots of the command codes [here](https://github.com/bill-rich/cncstats/blob/main/pkg/zhreplay/body/body.go)
